@@ -28,7 +28,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.2</version>  <!-- ⬅️ ВЕРНУЛ СТАБИЛЬНУЮ ВЕРСИЮ -->
+            <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -42,7 +42,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.7.0</version>  <!-- ⬅️ ВЕРНУЛ СТАБИЛЬНУЮ ВЕРСИЮ -->
+            <version>5.7.0</version>
             <scope>compile</scope>
         </dependency>
 
