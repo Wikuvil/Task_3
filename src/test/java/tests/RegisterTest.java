@@ -11,18 +11,21 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+
 public class RegisterTest extends BaseTest{
     private String email;
     private String password;
-    private String accessToken;
 
     @AfterEach
-    public void tearDown(){
-        if (email != null && password != null){
-            accessToken = UserApi.loginUser(email, password);
-        }
-        if (accessToken != null) {
-            UserApi.deleteUser(accessToken);
+    public void tearDown() {
+        if (email != null && password != null) {
+            try {
+                String token = UserApi.loginUser(email, password);
+                if (token != null) {
+                    UserApi.deleteUser(token);
+                }
+            } catch (Exception ignored) {
+            }
         }
         super.tearDown();
     }
