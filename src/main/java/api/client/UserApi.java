@@ -1,6 +1,7 @@
 package api.client;
 
 import api.constants.Api;
+import api.models.UserCreds;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import api.models.User;
@@ -29,6 +30,27 @@ public class UserApi {
     //@Step("Создание нового пользователя и получение токена")
     public static String createUserReturnToken(User user) {
         return createUserReturnResponse(user)
+                .statusCode(HttpStatus.SC_OK)
+                .body("success", equalTo(true))
+                .extract()
+                .jsonPath()
+                .getString("accessToken");
+    }
+
+    //@Step("Авторизация пользователя и получение токена")
+    public static String loginUser(String email, String password) {
+        UserCreds userCreds = UserCreds.builder()
+                .email(email)
+                .password(password)
+                .build();
+
+        return given()
+                .contentType(JSON)
+                .and()
+                .body(userCreds)
+                .when()
+                .post(API_LOGIN)
+                .then()
                 .statusCode(HttpStatus.SC_OK)
                 .body("success", equalTo(true))
                 .extract()
